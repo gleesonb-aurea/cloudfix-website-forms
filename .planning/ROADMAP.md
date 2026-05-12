@@ -12,14 +12,18 @@
 
 **Status:** In Progress
 **Duration:** 1-2 days
+**Plans:** 1 plan
 
 ### Goals
 - Configure N8N webhook validation
 - Test security implementation
 
+### Plans
+- [ ] 01-01-PLAN.md — Configure N8N Header Auth validation and test webhook security
+
 ### Tasks
 - [ ] Set `WEBHOOK_SECRET` environment variable in N8N
-- [ ] Add validation node to N8N workflow
+- [ ] Configure Header Auth in N8N webhook node
 - [ ] Test valid submission
 - [ ] Test invalid secret rejection
 - [ ] Test missing secret rejection
