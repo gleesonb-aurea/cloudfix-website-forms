@@ -1,0 +1,500 @@
+<!-- CloudFix Referral Partner Form - Embed this in WordPress -->
+<div class="referral-partner-wrapper">
+    <style>
+        .referral-partner-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .referral-partner-container {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 60px 20px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .referral-partner-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .referral-partner-header h2 {
+            color: #1e3a8a;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .referral-partner-header .subtitle {
+            color: #1e40af;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .referral-partner-header p {
+            color: #475569;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .referral-partner-form {
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 15px;
+            box-shadow: 0 12px 40px rgba(30, 58, 138, 0.15);
+        }
+        
+        .referral-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .referral-form-row {
+                grid-template-columns: 1fr;
+            }
+            .referral-partner-container {
+                padding: 40px 15px;
+            }
+            .referral-partner-form {
+                padding: 30px 20px;
+            }
+        }
+        
+        .referral-form-group {
+            margin-bottom: 25px;
+        }
+        
+        .referral-form-group label {
+            display: block;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .referral-form-group.required label::after {
+            content: ' *';
+            color: #dc2626;
+        }
+        
+        .referral-form-group input,
+        .referral-form-group textarea,
+        .referral-form-group select {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .referral-form-group input:focus,
+        .referral-form-group textarea:focus,
+        .referral-form-group select:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.15);
+        }
+        
+        .referral-form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .referral-form-group select {
+            cursor: pointer;
+        }
+        
+        .partnership-info {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .partnership-info h4 {
+            color: #1e293b;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .partnership-info ul {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .partnership-info li {
+            margin-bottom: 8px;
+        }
+        
+        .referral-checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .referral-checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        
+        .referral-checkbox-wrapper label {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #475569;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .referral-submit-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
+        }
+        
+        .referral-submit-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+        }
+        
+        .referral-submit-btn:disabled {
+            background: #94a3b8;
+            color: #64748b;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .referral-form-status {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 15px;
+            display: none;
+            text-align: center;
+        }
+        
+        .referral-form-status.success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 2px solid #bbf7d0;
+        }
+        
+        .referral-form-status.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 2px solid #fecaca;
+        }
+        
+        .referral-form-status.loading {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 2px solid #bfdbfe;
+        }
+    </style>
+    
+    <div class="referral-partner-container">
+        <div class="referral-partner-header">
+            <h2>Become a Referral Partner</h2>
+            <div class="subtitle">Contact Us to Get Started!</div>
+            <p>Join our referral program and earn rewards by connecting businesses with CloudFix's AWS cost optimization solutions.</p>
+        </div>
+        
+        <div class="referral-partner-form">
+            <div id="referral-partner-container">
+                <div class="referral-form-row">
+                    <div class="referral-form-group required">
+                        <label for="rp_firstName">First Name</label>
+                        <input type="text" id="rp_firstName" name="firstName">
+                    </div>
+
+                    <div class="referral-form-group required">
+                        <label for="rp_lastName">Last Name</label>
+                        <input type="text" id="rp_lastName" name="lastName">
+                    </div>
+                </div>
+
+                <div class="referral-form-row">
+                    <div class="referral-form-group required">
+                        <label for="rp_email">Work Email</label>
+                        <input type="email" id="rp_email" name="email">
+                    </div>
+
+                    <div class="referral-form-group">
+                        <label for="rp_phone">Phone Number</label>
+                        <input type="tel" id="rp_phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="referral-form-row">
+                    <div class="referral-form-group required">
+                        <label for="rp_company">Company Name</label>
+                        <input type="text" id="rp_company" name="company">
+                    </div>
+
+                    <div class="referral-form-group">
+                        <label for="rp_jobTitle">Job Title</label>
+                        <input type="text" id="rp_jobTitle" name="jobTitle">
+                    </div>
+                </div>
+
+                <div class="referral-form-group required">
+                    <label for="rp_businessType">Type of Business/Industry</label>
+                    <select id="rp_businessType" name="businessType">
+                        <option value="">Select your business type</option>
+                        <option value="AWS Consulting Partner">AWS Consulting Partner</option>
+                        <option value="System Integrator">System Integrator</option>
+                        <option value="Technology Reseller">Technology Reseller</option>
+                        <option value="Cloud Services Provider">Cloud Services Provider</option>
+                        <option value="DevOps Consultant">DevOps Consultant</option>
+                        <option value="IT Services Company">IT Services Company</option>
+                        <option value="Independent Consultant">Independent Consultant</option>
+                        <option value="Software Vendor">Software Vendor</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="referral-form-group">
+                    <label for="rp_clientBase">Describe Your Client Base</label>
+                    <textarea id="rp_clientBase" name="clientBase" placeholder="Tell us about the types of companies you work with, their AWS usage patterns, and typical spend levels..."></textarea>
+                </div>
+
+                <div class="referral-form-group">
+                    <label for="rp_experience">AWS/Cloud Experience</label>
+                    <textarea id="rp_experience" name="experience" placeholder="Describe your experience with AWS, cloud optimization, or related services..."></textarea>
+                </div>
+
+                <div class="referral-form-group">
+                    <label for="rp_questions">Questions or Additional Information</label>
+                    <textarea id="rp_questions" name="questions" placeholder="Any questions about the program or additional information you'd like to share..."></textarea>
+                </div>
+
+                <div class="partnership-info">
+                    <h4>Why Partner with CloudFix?</h4>
+                    <ul>
+                        <li><strong>Competitive commissions</strong> for successful referrals</li>
+                        <li><strong>No exclusivity requirements</strong> - partner with us alongside others</li>
+                        <li><strong>Full sales support</strong> - we handle the technical discussions</li>
+                        <li><strong>Quick payouts</strong> - get paid when your referrals convert</li>
+                        <li><strong>Marketing resources</strong> - materials to help you sell</li>
+                    </ul>
+                </div>
+
+                <div class="referral-checkbox-wrapper">
+                    <input type="checkbox" id="rp_agreement" name="partnerAgreement">
+                    <label for="rp_agreement">I'm interested in learning more about CloudFix's referral partner program and agree to be contacted *</label>
+                </div>
+
+                <div class="referral-checkbox-wrapper">
+                    <input type="checkbox" id="rp_updates" name="partnerUpdates">
+                    <label for="rp_updates">Send me updates about partner program enhancements and opportunities</label>
+                </div>
+
+                <button type="button" class="referral-submit-btn" id="rp_submit_btn">Apply for Partnership</button>
+
+                <div class="referral-form-status" id="rp-form-status"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load configuration -->
+<script src="config-local.js" onerror="this.src='config.js'"></script>
+<script>
+(function() {
+    // Skip initialization in WordPress admin
+    if (document.body.classList.contains('wp-admin')) {
+        return;
+    }
+
+    // Use configuration or fallback values
+    const config = window.CloudFixConfig || {};
+    const WEBHOOK_URL = config.WEBHOOK_URL || 'https://automate.billgleeson.com/webhook/cloudfix-website-forms';
+    const RECAPTCHA_SITE_KEY = config.RECAPTCHA_SITE_KEY || '6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb';
+
+    // Dynamically load reCAPTCHA with the correct site key
+    const recaptchaScript = document.createElement('script');
+    recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    document.head.appendChild(recaptchaScript);
+
+    const container = document.getElementById('referral-partner-container');
+    const statusDiv = document.getElementById('rp-form-status');
+    const submitBtn = document.getElementById('rp_submit_btn');
+
+    // Form field elements
+    const firstNameInput = document.getElementById('rp_firstName');
+    const lastNameInput = document.getElementById('rp_lastName');
+    const emailInput = document.getElementById('rp_email');
+    const phoneInput = document.getElementById('rp_phone');
+    const companyInput = document.getElementById('rp_company');
+    const jobTitleInput = document.getElementById('rp_jobTitle');
+    const businessTypeSelect = document.getElementById('rp_businessType');
+    const clientBaseTextarea = document.getElementById('rp_clientBase');
+    const experienceTextarea = document.getElementById('rp_experience');
+    const questionsTextarea = document.getElementById('rp_questions');
+    const agreementCheckbox = document.getElementById('rp_agreement');
+    const updatesCheckbox = document.getElementById('rp_updates');
+
+    function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.className = `referral-form-status ${type}`;
+        statusDiv.style.display = 'block';
+    }
+
+    function hideStatus() {
+        statusDiv.style.display = 'none';
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validateForm() {
+        if (!firstNameInput.value.trim()) {
+            showStatus('Please enter your first name.', 'error');
+            firstNameInput.focus();
+            return false;
+        }
+        if (!lastNameInput.value.trim()) {
+            showStatus('Please enter your last name.', 'error');
+            lastNameInput.focus();
+            return false;
+        }
+        if (!emailInput.value.trim() || !isValidEmail(emailInput.value.trim())) {
+            showStatus('Please enter a valid email address.', 'error');
+            emailInput.focus();
+            return false;
+        }
+        if (!companyInput.value.trim()) {
+            showStatus('Please enter your company name.', 'error');
+            companyInput.focus();
+            return false;
+        }
+        if (!businessTypeSelect.value) {
+            showStatus('Please select your business type.', 'error');
+            businessTypeSelect.focus();
+            return false;
+        }
+        if (!agreementCheckbox.checked) {
+            showStatus('Please agree to be contacted to proceed with the partnership application.', 'error');
+            agreementCheckbox.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function resetForm() {
+        firstNameInput.value = '';
+        lastNameInput.value = '';
+        emailInput.value = '';
+        phoneInput.value = '';
+        companyInput.value = '';
+        jobTitleInput.value = '';
+        businessTypeSelect.value = '';
+        clientBaseTextarea.value = '';
+        experienceTextarea.value = '';
+        questionsTextarea.value = '';
+        agreementCheckbox.checked = false;
+        updatesCheckbox.checked = false;
+    }
+
+    async function handleSubmit() {
+        if (!validateForm()) {
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting Application...';
+        showStatus('Processing your partnership application...', 'loading');
+
+        try {
+            // Execute reCAPTCHA
+            const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'referral_partner' });
+
+            // Collect form data manually
+            const data = {
+                firstName: firstNameInput.value.trim(),
+                lastName: lastNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                company: companyInput.value.trim(),
+                jobTitle: jobTitleInput.value.trim(),
+                businessType: businessTypeSelect.value,
+                clientBase: clientBaseTextarea.value.trim(),
+                experience: experienceTextarea.value.trim(),
+                questions: questionsTextarea.value.trim(),
+                partnerAgreement: agreementCheckbox.checked,
+                partnerUpdates: updatesCheckbox.checked,
+                timestamp: new Date().toISOString(),
+                source: 'CloudFix Referral Partner Form',
+                page_url: window.location.href,
+                recaptcha_token: token,
+                user_agent: navigator.userAgent,
+                form_type: 'referral_partner'
+            };
+
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                showStatus('Thank you! Your partnership application has been submitted successfully. Our partner team will review your information and contact you within 2-3 business days to discuss next steps.', 'success');
+                resetForm();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showStatus('Sorry, there was an error submitting your application. Please try again or contact our partner team directly.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Apply for Partnership';
+        }
+    }
+
+    // Button click handler
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleSubmit();
+    });
+
+    // Enter key support
+    container.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit();
+        }
+    });
+})();
+</script>

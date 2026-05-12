@@ -1,0 +1,521 @@
+<!-- CloudFix Partner Opportunity Submission Form - Embed this in WordPress -->
+<div class="partner-opportunity-wrapper">
+    <style>
+        .partner-opportunity-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .partner-opportunity-container {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 60px 20px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .partner-opportunity-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .partner-opportunity-header h2 {
+            color: #1a365d;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .partner-opportunity-header .howdy {
+            color: #3182ce;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .partner-opportunity-header p {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .partner-opportunity-form {
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .partner-form-row {
+                grid-template-columns: 1fr;
+            }
+            .partner-opportunity-container {
+                padding: 40px 15px;
+            }
+            .partner-opportunity-form {
+                padding: 30px 20px;
+            }
+        }
+        
+        .partner-form-group {
+            margin-bottom: 25px;
+        }
+        
+        .partner-form-group label {
+            display: block;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .partner-form-group.required label::after {
+            content: ' *';
+            color: #e53e3e;
+        }
+        
+        .partner-form-group input,
+        .partner-form-group textarea,
+        .partner-form-group select {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .partner-form-group input:focus,
+        .partner-form-group textarea:focus,
+        .partner-form-group select:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.15);
+        }
+        
+        .partner-form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .partner-form-group select {
+            cursor: pointer;
+        }
+        
+        .opportunity-info {
+            background: #f0f9ff;
+            border: 2px solid #bae6fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .opportunity-info h4 {
+            color: #0c4a6e;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .opportunity-info p {
+            color: #0369a1;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .partner-checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .partner-checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        
+        .partner-checkbox-wrapper label {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #4a5568;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .partner-submit-btn {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5aa0 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(49, 130, 206, 0.3);
+        }
+        
+        .partner-submit-btn:hover {
+            background: linear-gradient(135deg, #2c5aa0 0%, #2a4a7c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(49, 130, 206, 0.4);
+        }
+        
+        .partner-submit-btn:disabled {
+            background: #a0aec0;
+            color: #718096;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .partner-form-status {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 15px;
+            display: none;
+            text-align: center;
+        }
+        
+        .partner-form-status.success {
+            background: #f0fff4;
+            color: #2f855a;
+            border: 2px solid #9ae6b4;
+        }
+        
+        .partner-form-status.error {
+            background: #fed7d7;
+            color: #c53030;
+            border: 2px solid #feb2b2;
+        }
+        
+        .partner-form-status.loading {
+            background: #ebf8ff;
+            color: #3182ce;
+            border: 2px solid #90cdf4;
+        }
+    </style>
+    
+    <div class="partner-opportunity-container">
+        <div class="partner-opportunity-header">
+            <div class="howdy">Howdy, Partner!</div>
+            <h2>Partner Opportunity Submission</h2>
+            <p>Have a potential customer who could benefit from CloudFix? Submit their details and earn rewards through our partner program.</p>
+        </div>
+        
+        <div class="partner-opportunity-form">
+            <div id="partner-opportunity-container">
+                <h3 style="color: #2d3748; margin-bottom: 20px; font-size: 20px;">Your Information</h3>
+
+                <div class="partner-form-row">
+                    <div class="partner-form-group required">
+                        <label for="po_partnerFirstName">Your First Name</label>
+                        <input type="text" id="po_partnerFirstName" name="partnerFirstName">
+                    </div>
+
+                    <div class="partner-form-group required">
+                        <label for="po_partnerLastName">Your Last Name</label>
+                        <input type="text" id="po_partnerLastName" name="partnerLastName">
+                    </div>
+                </div>
+
+                <div class="partner-form-row">
+                    <div class="partner-form-group required">
+                        <label for="po_partnerEmail">Your Email</label>
+                        <input type="email" id="po_partnerEmail" name="partnerEmail">
+                    </div>
+
+                    <div class="partner-form-group required">
+                        <label for="po_partnerCompany">Your Company</label>
+                        <input type="text" id="po_partnerCompany" name="partnerCompany">
+                    </div>
+                </div>
+
+                <h3 style="color: #2d3748; margin: 30px 0 20px; font-size: 20px;">Opportunity Details</h3>
+
+                <div class="partner-form-row">
+                    <div class="partner-form-group required">
+                        <label for="po_clientFirstName">Client First Name</label>
+                        <input type="text" id="po_clientFirstName" name="clientFirstName">
+                    </div>
+
+                    <div class="partner-form-group required">
+                        <label for="po_clientLastName">Client Last Name</label>
+                        <input type="text" id="po_clientLastName" name="clientLastName">
+                    </div>
+                </div>
+
+                <div class="partner-form-row">
+                    <div class="partner-form-group required">
+                        <label for="po_clientEmail">Client Email</label>
+                        <input type="email" id="po_clientEmail" name="clientEmail">
+                    </div>
+
+                    <div class="partner-form-group required">
+                        <label for="po_clientCompany">Client Company</label>
+                        <input type="text" id="po_clientCompany" name="clientCompany">
+                    </div>
+                </div>
+
+                <div class="partner-form-row">
+                    <div class="partner-form-group">
+                        <label for="po_clientPhone">Client Phone</label>
+                        <input type="tel" id="po_clientPhone" name="clientPhone">
+                    </div>
+
+                    <div class="partner-form-group required">
+                        <label for="po_estimatedSpend">Estimated Annual AWS Spend</label>
+                        <select id="po_estimatedSpend" name="estimatedSpend">
+                            <option value="">Select estimated spend range</option>
+                            <option value="$100K - $500K">$100K - $500K</option>
+                            <option value="$500K - $1M">$500K - $1M</option>
+                            <option value="$1M - $5M">$1M - $5M</option>
+                            <option value="$5M - $20M">$5M - $20M</option>
+                            <option value="$20M+">$20M+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="partner-form-group">
+                    <label for="po_opportunityDetails">Opportunity Details</label>
+                    <textarea id="po_opportunityDetails" name="opportunityDetails" placeholder="Tell us about the client's AWS environment, current challenges, timeline, and why they'd be a good fit for CloudFix..."></textarea>
+                </div>
+
+                <div class="opportunity-info">
+                    <h4>Partner Program Benefits</h4>
+                    <p>Earn competitive commissions for successful referrals. Our team will work directly with your client while keeping you informed throughout the process.</p>
+                </div>
+
+                <div class="partner-checkbox-wrapper">
+                    <input type="checkbox" id="po_clientConsent" name="clientConsent">
+                    <label for="po_clientConsent">I confirm that the client has consented to being contacted by CloudFix *</label>
+                </div>
+
+                <div class="partner-checkbox-wrapper">
+                    <input type="checkbox" id="po_updates" name="partnerUpdates">
+                    <label for="po_updates">Keep me updated on partner program news and opportunities</label>
+                </div>
+
+                <button type="button" class="partner-submit-btn" id="po_submit_btn">Submit Opportunity</button>
+
+                <div class="partner-form-status" id="po-form-status"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load configuration -->
+<script src="config-local.js" onerror="this.src='config.js'"></script>
+<script>
+(function() {
+    // Skip initialization in WordPress admin
+    if (document.body.classList.contains('wp-admin')) {
+        return;
+    }
+
+    // Use configuration or fallback values
+    const config = window.CloudFixConfig || {};
+    const WEBHOOK_URL = config.WEBHOOK_URL || 'https://automate.billgleeson.com/webhook/cloudfix-website-forms';
+    const RECAPTCHA_SITE_KEY = config.RECAPTCHA_SITE_KEY || '6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb';
+
+    // Dynamically load reCAPTCHA with the correct site key
+    const recaptchaScript = document.createElement('script');
+    recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    document.head.appendChild(recaptchaScript);
+
+    const container = document.getElementById('partner-opportunity-container');
+    const statusDiv = document.getElementById('po-form-status');
+    const submitBtn = document.getElementById('po_submit_btn');
+
+    // Form field elements
+    const partnerFirstNameInput = document.getElementById('po_partnerFirstName');
+    const partnerLastNameInput = document.getElementById('po_partnerLastName');
+    const partnerEmailInput = document.getElementById('po_partnerEmail');
+    const partnerCompanyInput = document.getElementById('po_partnerCompany');
+    const clientFirstNameInput = document.getElementById('po_clientFirstName');
+    const clientLastNameInput = document.getElementById('po_clientLastName');
+    const clientEmailInput = document.getElementById('po_clientEmail');
+    const clientCompanyInput = document.getElementById('po_clientCompany');
+    const clientPhoneInput = document.getElementById('po_clientPhone');
+    const estimatedSpendSelect = document.getElementById('po_estimatedSpend');
+    const opportunityDetailsTextarea = document.getElementById('po_opportunityDetails');
+    const clientConsentCheckbox = document.getElementById('po_clientConsent');
+    const partnerUpdatesCheckbox = document.getElementById('po_updates');
+
+    function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.className = `partner-form-status ${type}`;
+        statusDiv.style.display = 'block';
+    }
+
+    function hideStatus() {
+        statusDiv.style.display = 'none';
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validateForm() {
+        if (!partnerFirstNameInput.value.trim()) {
+            showStatus('Please enter your first name.', 'error');
+            partnerFirstNameInput.focus();
+            return false;
+        }
+        if (!partnerLastNameInput.value.trim()) {
+            showStatus('Please enter your last name.', 'error');
+            partnerLastNameInput.focus();
+            return false;
+        }
+        if (!partnerEmailInput.value.trim() || !isValidEmail(partnerEmailInput.value.trim())) {
+            showStatus('Please enter a valid email address.', 'error');
+            partnerEmailInput.focus();
+            return false;
+        }
+        if (!partnerCompanyInput.value.trim()) {
+            showStatus('Please enter your company name.', 'error');
+            partnerCompanyInput.focus();
+            return false;
+        }
+        if (!clientFirstNameInput.value.trim()) {
+            showStatus('Please enter client\'s first name.', 'error');
+            clientFirstNameInput.focus();
+            return false;
+        }
+        if (!clientLastNameInput.value.trim()) {
+            showStatus('Please enter client\'s last name.', 'error');
+            clientLastNameInput.focus();
+            return false;
+        }
+        if (!clientEmailInput.value.trim() || !isValidEmail(clientEmailInput.value.trim())) {
+            showStatus('Please enter a valid client email address.', 'error');
+            clientEmailInput.focus();
+            return false;
+        }
+        if (!clientCompanyInput.value.trim()) {
+            showStatus('Please enter client\'s company name.', 'error');
+            clientCompanyInput.focus();
+            return false;
+        }
+        if (!estimatedSpendSelect.value) {
+            showStatus('Please select estimated annual AWS spend.', 'error');
+            estimatedSpendSelect.focus();
+            return false;
+        }
+        if (!clientConsentCheckbox.checked) {
+            showStatus('Please confirm that the client has consented to being contacted.', 'error');
+            clientConsentCheckbox.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function resetForm() {
+        partnerFirstNameInput.value = '';
+        partnerLastNameInput.value = '';
+        partnerEmailInput.value = '';
+        partnerCompanyInput.value = '';
+        clientFirstNameInput.value = '';
+        clientLastNameInput.value = '';
+        clientEmailInput.value = '';
+        clientCompanyInput.value = '';
+        clientPhoneInput.value = '';
+        estimatedSpendSelect.value = '';
+        opportunityDetailsTextarea.value = '';
+        clientConsentCheckbox.checked = false;
+        partnerUpdatesCheckbox.checked = false;
+    }
+
+    async function handleSubmit() {
+        if (!validateForm()) {
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        showStatus('Processing your opportunity submission...', 'loading');
+
+        try {
+            // Execute reCAPTCHA
+            const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'partner_opportunity' });
+
+            // Collect form data manually
+            const data = {
+                partnerFirstName: partnerFirstNameInput.value.trim(),
+                partnerLastName: partnerLastNameInput.value.trim(),
+                partnerEmail: partnerEmailInput.value.trim(),
+                partnerCompany: partnerCompanyInput.value.trim(),
+                clientFirstName: clientFirstNameInput.value.trim(),
+                clientLastName: clientLastNameInput.value.trim(),
+                clientEmail: clientEmailInput.value.trim(),
+                clientCompany: clientCompanyInput.value.trim(),
+                clientPhone: clientPhoneInput.value.trim(),
+                estimatedSpend: estimatedSpendSelect.value,
+                opportunityDetails: opportunityDetailsTextarea.value.trim(),
+                clientConsent: clientConsentCheckbox.checked,
+                partnerUpdates: partnerUpdatesCheckbox.checked,
+                timestamp: new Date().toISOString(),
+                source: 'CloudFix Partner Opportunity Form',
+                page_url: window.location.href,
+                recaptcha_token: token,
+                user_agent: navigator.userAgent,
+                form_type: 'partner_opportunity'
+            };
+
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                showStatus('Thank you! Your partner opportunity has been submitted successfully. Our team will review the details and be in touch soon.', 'success');
+                resetForm();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showStatus('Sorry, there was an error submitting your opportunity. Please try again or contact our partner team directly.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Opportunity';
+        }
+    }
+
+    // Button click handler
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleSubmit();
+    });
+
+    // Enter key support
+    container.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit();
+        }
+    });
+})();
+</script>

@@ -1,0 +1,325 @@
+<!-- CloudFix Newsletter Form - Embed this in WordPress -->
+<div class="cloudfix-newsletter-wrapper">
+    <style>
+        .cloudfix-newsletter-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .cloudfix-newsletter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .cloudfix-newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .cloudfix-newsletter-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cloudfix-newsletter-section h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .cloudfix-newsletter-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+        
+        .newsletter-form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-input-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .cloudfix-newsletter-section {
+                padding: 40px 20px;
+            }
+            .cloudfix-newsletter-section h3 {
+                font-size: 26px;
+            }
+        }
+        
+        .newsletter-email-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        
+        .newsletter-email-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        .newsletter-email-input::placeholder {
+            color: #718096;
+        }
+        
+        .newsletter-submit-btn {
+            background: #ffffff;
+            color: #667eea;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-submit-btn {
+                width: 100%;
+            }
+        }
+        
+        .newsletter-submit-btn:hover {
+            background: #f7fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .newsletter-submit-btn:disabled {
+            background: rgba(255, 255, 255, 0.7);
+            color: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .newsletter-form-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+        
+        .newsletter-form-status.success {
+            background: rgba(72, 187, 120, 0.2);
+            color: #f0fff4;
+            border: 1px solid rgba(159, 230, 180, 0.5);
+        }
+        
+        .newsletter-form-status.error {
+            background: rgba(245, 101, 101, 0.2);
+            color: #fed7d7;
+            border: 1px solid rgba(254, 178, 178, 0.5);
+        }
+        
+        .newsletter-form-status.loading {
+            background: rgba(66, 153, 225, 0.2);
+            color: #ebf8ff;
+            border: 1px solid rgba(144, 205, 244, 0.5);
+        }
+        
+        .newsletter-privacy {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+        
+        .newsletter-privacy a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: underline;
+        }
+    </style>
+    
+    <div class="cloudfix-newsletter-section">
+        <div class="newsletter-content">
+            <h3>Stay up to date with the latest news and content delivered to your inbox!</h3>
+            <p>Get insights on AWS cost optimization, industry trends, and CloudFix updates.</p>
+            
+            <div class="newsletter-form-container">
+                <div id="cloudfix-newsletter-container">
+                    <div class="newsletter-input-group">
+                        <input
+                            type="email"
+                            id="nl_email"
+                            name="email"
+                            class="newsletter-email-input"
+                            placeholder="Enter your email address"
+                        >
+                        <button type="button" class="newsletter-submit-btn" id="nl_submit_btn">Subscribe</button>
+                    </div>
+
+                    <div class="newsletter-form-status" id="nl-form-status"></div>
+                </div>
+                
+                <p class="newsletter-privacy">
+                    We respect your privacy. Unsubscribe at any time. 
+                    <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load configuration -->
+<script src="config-local.js" onerror="this.src='config.js'"></script>
+<script>
+(function() {
+    // Skip initialization in WordPress admin
+    if (document.body.classList.contains('wp-admin')) {
+        return;
+    }
+
+    // Use configuration or fallback values
+    const config = window.CloudFixConfig || {};
+    const WEBHOOK_URL = config.WEBHOOK_URL || 'https://automate.billgleeson.com/webhook/cloudfix-website-forms';
+    const RECAPTCHA_SITE_KEY = config.RECAPTCHA_SITE_KEY || '6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb';
+
+    // Dynamically load reCAPTCHA with the correct site key
+    const recaptchaScript = document.createElement('script');
+    recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    document.head.appendChild(recaptchaScript);
+
+    const container = document.getElementById('cloudfix-newsletter-container');
+    const statusDiv = document.getElementById('nl-form-status');
+    const submitBtn = document.getElementById('nl_submit_btn');
+    const emailInput = document.getElementById('nl_email');
+
+    function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.className = `newsletter-form-status ${type}`;
+        statusDiv.style.display = 'block';
+    }
+
+    function hideStatus() {
+        statusDiv.style.display = 'none';
+    }
+
+    // Simple email validation
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    async function handleSubmit() {
+        const email = emailInput.value.trim();
+
+        if (!email || !isValidEmail(email)) {
+            showStatus('Please enter a valid email address.', 'error');
+            emailInput.focus();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        showStatus('Processing your subscription...', 'loading');
+
+        try {
+            // Execute reCAPTCHA
+            const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'newsletter_signup' });
+
+            const data = {
+                email: email,
+                timestamp: new Date().toISOString(),
+                source: 'CloudFix Newsletter Signup',
+                page_url: window.location.href,
+                recaptcha_token: token,
+                user_agent: navigator.userAgent,
+                form_type: 'newsletter',
+                subscription_type: 'general_updates'
+            };
+
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                showStatus('Success! Thank you for subscribing. Check your email for confirmation.', 'success');
+                emailInput.value = '';
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Newsletter subscription error:', error);
+            showStatus('Sorry, there was an error subscribing. Please try again later.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Subscribe';
+        }
+    }
+
+    // Button click handler
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleSubmit();
+    });
+
+    // Enter key support
+    container.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit();
+        }
+    });
+
+    // Clear status when user starts typing again
+    emailInput.addEventListener('input', function() {
+        if (statusDiv.style.display === 'block' && statusDiv.classList.contains('error')) {
+            hideStatus();
+        }
+    });
+})();
+</script>
