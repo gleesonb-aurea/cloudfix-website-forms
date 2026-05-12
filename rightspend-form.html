@@ -257,6 +257,7 @@
     // Use configuration or fallback values
     const config = window.CloudFixConfig || {};
     const WEBHOOK_URL = config.WEBHOOK_URL || 'https://automate.billgleeson.com/webhook/cloudfix-website-forms';
+    const WEBHOOK_SECRET = config.WEBHOOK_SECRET || '';
     const RECAPTCHA_SITE_KEY = config.RECAPTCHA_SITE_KEY || '6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb';
 
     // Dynamically load reCAPTCHA with the correct site key
@@ -351,6 +352,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    ...(WEBHOOK_SECRET ? { 'X-Webhook-Secret': WEBHOOK_SECRET } : {})
                 },
                 body: JSON.stringify(data)
             });

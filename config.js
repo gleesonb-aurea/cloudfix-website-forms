@@ -9,6 +9,9 @@ const CONFIG = {
   // reCAPTCHA v3 Site Key (public)
   RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY || '6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb',
 
+  // Webhook secret for securing form submissions (must match n8n WEBHOOK_SECRET env var)
+  WEBHOOK_SECRET: process.env.WEBHOOK_SECRET || '',
+
   // Email for notifications (used in WordPress/PHP versions)
   NOTIFICATION_EMAIL: process.env.NOTIFICATION_EMAIL || 'bill@billgleeson.com',
 

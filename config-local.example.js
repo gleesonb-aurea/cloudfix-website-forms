@@ -9,6 +9,9 @@ const CONFIG = {
   // reCAPTCHA v3 Site Key (get from https://www.google.com/recaptcha/admin/create)
   RECAPTCHA_SITE_KEY: 'your-recaptcha-site-key-here',
 
+  // Webhook secret for securing form submissions (set same value in n8n WEBHOOK_SECRET env var)
+  WEBHOOK_SECRET: 'your-webhook-secret-key-here',
+
   // Email for notifications (used in WordPress/PHP versions)
   NOTIFICATION_EMAIL: 'your-email@yourcompany.com',
 
