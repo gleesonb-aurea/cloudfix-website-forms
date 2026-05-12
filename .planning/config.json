@@ -1,0 +1,39 @@
+{
+  "projectName": "cloudfix-lead-forms",
+  "version": "1.0.0",
+  "createdAt": "2025-01-12",
+  "workflow": {
+    "autoPlan": false,
+    "autoExecute": false,
+    "requireApproval": true,
+    "createCommits": true
+  },
+  "preferences": {
+    "testFramework": "manual",
+    "documentationStyle": "concise",
+    "branchStrategy": "main"
+  },
+  "paths": {
+    "planning": ".planning",
+    "codebase": ".planning/codebase",
+    "research": ".planning/research",
+    "campaigns": "campaigns"
+  },
+  "integrations": {
+    "n8n": {
+      "webhookUrl": "https://automate.billgleeson.com/webhook/cloudfix-website-forms",
+      "validation": "X-Webhook-Secret header"
+    },
+    "wordpress": {
+      "sites": [
+        "cloudfix.com",
+        "rightspend.ai"
+      ],
+      "deployment": "html-code-block"
+    },
+    "recaptcha": {
+      "version": "v3",
+      "siteKey": "6LctAb8rAAAAAG900ftMg2zJq13aLpJa5joqZ9yb"
+    }
+  }
+}
